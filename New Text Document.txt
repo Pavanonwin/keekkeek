@@ -1,0 +1,62 @@
+
+"""
+
+"""
+def stateOfCells(cell, days):
+	# Write your code here
+	list1=[]
+	for i in range(len(cell)):
+		list1.append(cell[i])
+	for i in range(days):
+		for j in range(len(cell)):
+			if j==0:
+				if cell[j+1]==0:
+					value=0
+				else:
+					value=1
+			    list1[j]=value
+			    
+			elif j==len(cell)-1:
+				if cell[j-1]==0:
+					value=0 
+				else:
+					value=1 
+				list1[j]=value
+				
+			else:
+				if cell[j-1]==0 or cell[j+1]==0:
+					value=0 
+				elif cell[j-1]==1 or cell[j+1]==0: 
+					value=1 
+				elif cell[j-1]==0 or cell[j+1]==1:
+					value=1 
+				else:
+					value=1 
+				list1[j]=value 
+		for val in range(len(list1)):
+			cell.append(cell[val])
+			
+	return list1
+
+
+def main():
+	#input for cell
+	cell = []
+	cell_size  = int(input())
+	cell = list(map(int,input().split()))
+	
+	#input for days
+	days = int(input())
+
+
+	
+	
+	result = stateOfCells(cell, days)
+	print(" ".join([str(res) for res in result]))	
+
+if __name__ == "__main__":
+    main()
+	
+	
+	
+

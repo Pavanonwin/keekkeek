@@ -1,0 +1,166 @@
+<!Accordion.css-->
+
+
+  .main_div {
+  
+    width:100%;
+    height:auto;
+    background:#6983aa ;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items:center;
+    text-align-last:center;
+    position: absolute;
+    margin-left:0px;
+    margin-top:0px;
+    overflow-y:scroll;
+    overflow-x: scroll;
+  }
+  
+  .iconWithQues{
+
+    width:60%;
+    height:10vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items:baseline;
+    text-align: center;
+    overflow-wrap: visible;
+    position: relative;
+    margin-top:10px;
+    border: green;
+    border-radius: 10px 10px 10px 10px;
+    padding-bottom:20px; 
+  
+
+  }
+
+  h1 {
+    color: white;
+    background: transparent;
+    background-color:#8566aa;
+    padding: 6px 0 2px 0;
+    box-shadow: 5px 5px 15px -5px rgba(0,0,0,0.3);
+    padding-bottom: 10px;
+    text-align: center;
+  }
+
+  .iconWithQues p {
+      background-color: yellow;
+      color: black;
+      cursor: pointer;
+      border-radius: 10px 10px 10px 10px;
+      background: transparent;
+      text-align: initial;
+      margin-left: 0px;
+      
+  }
+
+  .iconWithQues h3 {
+      background-color: yellow;
+      text-align: center;
+      box-shadow: 10px 20px 10px -10px black; 
+      text-align: initial;
+
+
+  }
+
+  .outsideP {
+    width:50%;
+    font-size: 20px;
+    font-weight: bold;
+    color:black;
+    background-color:white;
+    height:10vh;
+    overflow-y:auto;
+  }
+
+
+  @media (max-width :768px) {
+    .main_div {
+      width:60%;
+    }
+  
+  }
+  
+
+
+
+
+<!--Accordion.jsx-->
+
+import React, {useState} from 'react';
+import './Accordion.css';
+import MyAccordion from './MyAccordion';
+
+
+import { questions } from './AccordionApi';
+const Accordion = () => {
+
+    const [data,setData] = useState(questions);
+
+
+    return (
+        <>
+          <h1> React Questions</h1>
+        <div className='main_div'>
+      
+
+        { data.map( (val) => {
+                return <MyAccordion key={val.id} question={val.question} answer={val.answer}/>
+            })
+        }
+
+        </div>
+       </>
+    )
+}
+
+export default Accordion; 
+
+<!--MyAccordion.jsx-->
+
+
+import React,{useState} from 'react';
+import './Accordion';
+
+
+const MyAccordion = (props) => {
+    const [show,setShow]= useState(false);
+
+
+   return (
+    <>
+          <div className='iconWithQues'>
+              <p onClick={ () => {setShow(!show)}}> {show? '➖':'➕' } </p>
+              <h3>{props.question} </h3>
+          </div>
+
+              { show &&  <p className='outsideP'> {props.answer} </p>}
+    </>
+   );
+}
+
+export default MyAccordion;
+
+
+<!--AccordionApi.js-->
+
+ export const questions = [ 
+    {id :1, question:'hey how are you ', answer:'I am fine Thank you!! fgdsugfsgfgfusgfusgfusgfusgfusgfiu iugfis iufgds fgiusgfs ug '},
+    {id :2, question:'how to login into website vey how are you fgdsugfsgfgfusgfusgfusgfusgfusgfiu iugfis iufgds fgiusgfs ug', answer:'click on the link and sign up and boom! ey how are you fgdsugfsgfgfusgfusgfusgfusgfusgfiu iugfis iufgds fgiusgfs ug'},
+    {id :3, question:'hey how are youey how are you fgdsugfsgfgfusgfusgfusgfusgfusgfiu iugfis iufgds fgiusgfs ug', answer:'I ey how are you fgdsugfsgfgfusgfusgfusgfusgfusgfiu iugfis iufgds fgiusgfs ugam fine Thank you!!'},
+    {id :4, question:'hey how are you how are you fgdsugfsgfgfusgfusgfusgfusgfusgfiu iugfis iufgds fgiusgfs ug', answer:'I am fine Thank you!!how are you fgdsugfsgfgfusgfusgfusgfusgfusgfiu iugfis iufgds fgiusgfs ug'},
+    {id :5, question:'hey how are you how are you fgdsugfsgfgfusgfusgfusgfusgfusgfiu iugfis iufgds fgiusgfs ug', answer:'I am fine Thank you!!how are you fgdsugfsgfgfusgfusgfusgfusgfusgfiu iugfis iufgds fgiusgfs ug'},
+    {id :6, question:'hey how are you how are you', answer:'I am fine Thank you!!how are you fgdsugfsgfgfusgfusgfusgfusgfusgfiu iugfis iufgds fgiusgfs ug'},
+    {id :7, question:'hey how are you how are you fgdsugfsgfgfusgfusgfusgfusgfusgfiu iugfis iufgds fgiusgfs ug', answer:'I am fine Thank you!!how are you fgdsugfsgfgfusgfusgfusgfusgfusgfiu iugfis iufgds fgiusgfs ug'},
+    {id :8, question:'hey how are you how are you fgdsugfsgfgfusgfusgfusgfusgfusgfiu iugfis iufgds fgiusgfs ug', answer:'I am fine Thank you!how are you fgdsugfsgfgfusgfusgfusgfusgfusgfiu iugfis iufgds fgiusgfs ug!'},
+    {id :9, question:'hey how are you how are you fgdsugfsgfgfusgfusgfusgfusgfusgfiu iugfis iufgds fgiusgfs ug', answer:'I am fine Thank you!how are you fgdsugfsgfgfusgfusgfusgfusgfusgfiu iugfis iufgds fgiusgfs ug!'},
+    {id :10, question:'hey how are you how are you fgdsugfsgfgfusgfusgfusgfusgfusgfiu iugfis iufgds fgiusgfs ug', answer:'I am fine Thank you!!how are you fgdsugfsgfgfusgfusgfusgfusgfusgfiu iugfis iufgds fgiusgfs ug'},
+    {id :11, question:'hey how are you how are you fgdsugfsgfgfusgfusgfusgfusgfusgfiu iugfis iufgds fgiusgfs ug', answer:'I am fine Thank you!how are you fgdsugfsgfgfusgfusgfusgfusgfusgfiu iugfis iufgds fgiusgfs ug!'},
+
+]
+
+// export default { questions };
